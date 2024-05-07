@@ -1,4 +1,4 @@
-from qiskit import Aer, QuantumCircuit, execute
+from qiskit import QuantumCircuit, execute, BasicAer
 import hashlib
 import random
 import string
@@ -9,7 +9,7 @@ def quantum_operation():
     circuit.cx(0, 1)
     circuit.measure_all()
 
-    simulator = Aer.get_backend('qasm_simulator')
+    simulator = BasicAer.get_backend('qasm_simulator')
     result = execute(circuit, simulator, shots=1).result()
     counts = result.get_counts(circuit)
     return list(counts.keys())[0]
@@ -25,3 +25,4 @@ def generate_quantum_bitcoin_address():
     rest_of_address = random_string(rest_length)
     address = prefix + rest_of_address
     return address
+
