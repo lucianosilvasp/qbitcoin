@@ -1,4 +1,5 @@
-from qiskit import QuantumCircuit, execute, BasicAer
+from qiskit import QuantumCircuit
+from qiskit_aer import AerSimulator
 import hashlib
 import random
 import string
@@ -9,8 +10,8 @@ def quantum_operation():
     circuit.cx(0, 1)
     circuit.measure_all()
 
-    simulator = BasicAer.get_backend('qasm_simulator')
-    result = execute(circuit, simulator, shots=1).result()
+    aersim = AerSimulator()
+    result = qiskit.execute(circuit, aersim).result()
     counts = result.get_counts(circuit)
     return list(counts.keys())[0]
 
